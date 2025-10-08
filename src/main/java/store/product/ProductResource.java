@@ -1,4 +1,4 @@
-package store.account;
+package store.product;
 
 import java.util.List;
 
@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import store.product.Product;
+
 @RestController
-public class ProductResource implements AccountController {
+public class ProductResource implements ProductController {
 
     @Autowired
     private ProductService productService;
@@ -20,7 +22,7 @@ public class ProductResource implements AccountController {
         // parser AccountIn to Account
         Product product = ProductParser.to(in);
 
-        Product saved = productService.create(account);
+        Product saved = productService.create(product);
 
         // parser Account to AccountOut and build to
         // HATEAOS standard
@@ -30,7 +32,7 @@ public class ProductResource implements AccountController {
                     .path("/{id}")
                     .buildAndExpand(saved.id())
                     .toUri()
-            ).body(AccountParser.to(saved));
+            ).body(ProductParser.to(saved));
     }
 
     @Override

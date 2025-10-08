@@ -1,4 +1,4 @@
-package store.account;
+package store.product;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -20,7 +20,7 @@ public class ProductService {
     private Logger looger = LoggerFactory.getLogger(ProductService.class);
 
     @Autowired
-    private AccountRepository accountRepository;
+    private ProductRepository productRepository;
 
     public Product create(Product product) {
         if (null == product.name()) {
@@ -52,26 +52,24 @@ public class ProductService {
                 "name already have been registered!"
             );
 
-        product.sha256(hash(product.name()));
-
         return productRepository.save(
-            new productModel(product)
+            new ProductModel(product)
         ).to();
     }
 
     public List<Product> findAll() {
         return StreamSupport.stream(
             productRepository.findAll().spliterator(), false)
-            .map(productModel::to)
+            .map(ProductModel::to)
             .toList();
     }
 
     public Product findById(String id) {
-        return productRepository.findById(id).map(productModel::to).orElse(null);
+        return productRepository.findById(id).map(ProductModel::to).orElse(null);
     }
 
     public void delete(String id) {
-        productRepository.delete(new AccountModel().id(id));
+        productRepository.delete(new ProductModel().id(id));
     }
     
 }

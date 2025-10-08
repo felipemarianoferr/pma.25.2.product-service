@@ -19,7 +19,7 @@ public class ProductParser {
                 .id(a.id())
                 .name(a.name())
                 .price(a.price())
-                .unit(in.unit())
+                .unit(a.unit())
                 .build();
     }
 

@@ -35,7 +35,7 @@ public class ProductModel {
         this.id = a.id();
         this.name = a.name();
         this.unit = a.unit();
-        this.pricce = a.price();
+        this.price = a.price();
     }
 
     public Product to() {

@@ -1,4 +1,4 @@
-package store.account;
+package store.product;
 
 import lombok.Builder;
 import lombok.Data;
