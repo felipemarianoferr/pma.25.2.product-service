@@ -1,8 +1,9 @@
-CREATE TABLE product
+SET search_path TO product;
+
+CREATE TABLE IF NOT EXISTS product
 (
-    id varchar(36) NOT NULL AUTO_INCREMENT,
+    id bigserial PRIMARY KEY,
     name varchar(255) NOT NULL,
     price decimal(10,2) NOT NULL,
-    unit varchar(64) NOT NULL,
-    CONSTRAINT product_pkey PRIMARY KEY (id)
-)
+    unit varchar(64) NOT NULL
+);

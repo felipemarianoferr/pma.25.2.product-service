@@ -1,50 +1,44 @@
 package store.product;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "product")
-@Setter @Accessors(chain = true, fluent = true)
+@Getter @Setter @Accessors(chain = true, fluent = true)
 @NoArgsConstructor @AllArgsConstructor
 public class ProductModel {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "unit")
+    @Column(name = "unit", nullable = false, length = 64)
     private String unit;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Float price;
 
-    public ProductModel(Product a) {
-        this.id = a.id();
+    public ProductModel(store.product.Product a) {
+        // não setar id, deixa o banco gerar
         this.name = a.name();
         this.unit = a.unit();
         this.price = a.price();
     }
 
-    public Product to() {
-        return Product.builder()
+    public store.product.Product to() {
+        return store.product.Product.builder()
             .id(this.id)
             .name(this.name)
             .unit(this.unit)
             .price(this.price)
             .build();
     }
-    
 }

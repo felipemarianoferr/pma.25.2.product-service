@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import store.product.ProductModel;
+import store.product.ProductRepository;
+
 @Service
 public class ProductService {
 
@@ -47,7 +50,7 @@ public class ProductService {
             );
         }
 
-        if (productRepository.findByname(product.name()) != null)
+        if (productRepository.findByName(product.name()) != null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                 "name already have been registered!"
             );
@@ -64,12 +67,12 @@ public class ProductService {
             .toList();
     }
 
-    public Product findById(String id) {
+    public Product findById(Long id) {
         return productRepository.findById(id).map(ProductModel::to).orElse(null);
     }
 
-    public void delete(String id) {
-        productRepository.delete(new ProductModel().id(id));
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
     
 }

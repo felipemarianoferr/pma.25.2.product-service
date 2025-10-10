@@ -16,7 +16,7 @@ public class ProductParser {
     public static ProductOut to(Product a) {
         return a == null ? null :
             ProductOut.builder()
-                .id(a.id())
+                .id(a.id() == null ? null : String.valueOf(a.id()))
                 .name(a.name())
                 .price(a.price())
                 .unit(a.unit())
@@ -27,5 +27,4 @@ public class ProductParser {
         return as == null ? null :
             as.stream().map(ProductParser::to).toList();
     }
-    
 }

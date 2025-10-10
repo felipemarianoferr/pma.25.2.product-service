@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>store</groupId>
-	<artifactId>account-service</artifactId>
+	<artifactId>product-service</artifactId>
 	<version>1.0.0</version>
 	
 	<properties>
@@ -32,7 +32,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>account</artifactId>
+			<artifactId>product</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
